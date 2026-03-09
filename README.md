@@ -22,3 +22,41 @@ Nilai ini akan digunakan di Postman Environment sebagai:
 ```
 FIREBASE_API_KEY
 ```
+
+# 3. Mengaktifkan Authentication
+
+1. Masuk ke menu Authentication.
+2. Klik Get Started.
+3. Pilih Sign-in Method.
+4. Aktifkan Email/Password.
+5. Klik Save.
+Setelah itu Firebase sudah bisa dipakai untuk register dan login user.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
