@@ -6,6 +6,16 @@
 4. Isi nama project → klik Continue → klik Create Project.
 5. Tunggu sampai proses selesai → klik Continue.
 
+### Example
+<p align="center">
+  <img width="300" src="https://github.com/user-attachments/assets/16391950-3616-4321-9f0d-3c37a5ad4730" />
+  <img width="300" src="https://github.com/user-attachments/assets/6102f282-6b8c-49e7-b032-f3d060fbbed4" />
+  <img width="300" src="https://github.com/user-attachments/assets/abe77512-a976-4857-a317-1acd7dd2f591" />
+  <img width="300" src="https://github.com/user-attachments/assets/6f40a245-af24-4c35-81bd-a2ba4a6df2d2" />
+  <img width="300" src="https://github.com/user-attachments/assets/6b6ab384-23ac-468c-9108-bad9351293fc" />
+  <img width="300" src="https://github.com/user-attachments/assets/5fa70994-8f6f-433c-9173-44b513e7c9e8" />
+</p>
+
 ---
 
 # 2. Membuat Web App di Firebase
@@ -15,6 +25,14 @@
 3. Isi App Nickname.
 4. Klik Register App.
 Setelah selesai, Firebase akan menampilkan konfigurasi aplikasi.
+
+### Example
+<p align="center">
+  <img width="300" src="https://github.com/user-attachments/assets/a78167d2-eda9-4af3-bca7-8027e4c392aa" />
+  <img width="300" src="https://github.com/user-attachments/assets/e064d897-1799-4d62-b1fe-5d4311b317df" />
+  <img width="300" src="https://github.com/user-attachments/assets/d2fee123-f79e-47b1-b7f8-f7f524192d83" />
+  <img width="300" src="https://github.com/user-attachments/assets/ae57180f-5538-4c32-8d8c-c6dcd925edc9" />
+</p>
 
 Yang perlu diambil adalah:
 ```
@@ -36,6 +54,15 @@ FIREBASE_API_KEY
 5. Klik Save.
 Setelah itu Firebase sudah bisa dipakai untuk register dan login user.
 
+### Example
+<p align="center">
+  <img width="300" src="https://github.com/user-attachments/assets/0c890847-062e-4c71-a3fc-1cd7f183212f" />
+  <img width="300" src="https://github.com/user-attachments/assets/d8c3b908-b916-4628-815f-17a4502e7d1f" />
+  <img width="300" src="https://github.com/user-attachments/assets/d2aaed6e-27cd-4891-afc1-1c80243304e0" />
+  <img width="300" src="https://github.com/user-attachments/assets/86a9086b-4a77-4c64-868e-cbaa9f0a1061" />
+
+</p>
+
 ---
 
 # 4. Setup Environment di Postman
@@ -53,6 +80,11 @@ Setelah itu Firebase sudah bisa dipakai untuk register dan login user.
 | BACKEND_TOKEN  |   | Token JWT dari backend (diisi setelah verify)  |
 | USER_EMAIL  | test@example.com | Email untuk testing  |
 | USER_PASSWORD  | Test@12345 | Password untuk testing  |
+
+### Example
+<p align="center">
+  <img width="" src="https://github.com/user-attachments/assets/3e355348-d6af-41b3-b07f-47e78418fef2" />
+</p>
 
 Environment ini dipakai agar tidak perlu mengetik ulang data di setiap request.
 
@@ -134,6 +166,16 @@ if (pm.response.code === 200) {
   console.log("Register gagal:", json.error.message);
 }
 ```
+
+### Tutorial 
+<p align="center">
+  <img width="300" src="https://github.com/user-attachments/assets/d748df23-8729-4826-9683-5eba019bcf0d" />
+  <img width="300" src="https://github.com/user-attachments/assets/8a9dfdf6-d914-4d19-a214-a5a013086396" />
+  <img width="300" src="https://github.com/user-attachments/assets/81c52b2f-3ac7-4e32-9f69-363b89cbafc9" />
+  <img width="300" src="https://github.com/user-attachments/assets/520207a6-583f-4297-857a-f41c1ca00cd9" />
+  <img width="300" src="https://github.com/user-attachments/assets/09747f3e-4a1a-4c04-abb5-aeb3030d4018" />
+</p>
+
 ---
 
 # 6. Step 2 — Kirim Email Verifikasi
@@ -201,6 +243,20 @@ if (pm.response.code === 200) {
   console.log("Gagal kirim email:", pm.response.json().error.message);
 }
 ```
+
+### Tutorial
+<p align="center">
+  <img width="300" src="https://github.com/user-attachments/assets/33bbeab4-6c36-4b60-ac9f-d2aaf0d8a0d9" />
+  <img width="300" src="https://github.com/user-attachments/assets/d47c3bbb-44db-487f-8721-57ed3b1f7180" />
+  <img width="300" src="https://github.com/user-attachments/assets/57377ef2-8307-4f31-bfc6-c09d5b6a6461" />
+  <img width="300" src="https://github.com/user-attachments/assets/7f855480-fbc9-4c6c-a3be-d212380ec84b" />
+  <img width="300" src="https://github.com/user-attachments/assets/a2ecb43a-5b6c-4f17-b979-13c0e98dd819" />
+  <img width="300" src="https://github.com/user-attachments/assets/1202cb35-c61d-4b2a-b134-7f0a2b043d60" />
+  <img width="300" src="https://github.com/user-attachments/assets/ce6efaa5-cece-441f-9974-03b0319aaa73" />
+
+</p>
+
+
 ---
 # 7. Step 3 — Cek Status Verifikasi Email
 Digunakan untuk mengecek apakah email sudah diverifikasi.
@@ -256,6 +312,13 @@ Response: 200 OK (email verified)
   ]
 }
 ```
+
+### Tutorial
+<p align="center">
+  <img width="300" src="https://github.com/user-attachments/assets/439f340c-1b1f-459b-8228-1e165c6d83ee" />
+  <img width="300" src="https://github.com/user-attachments/assets/06951905-d70d-468b-91b6-ba3444209342" />
+</p>
+
 ---
 
 # 8. Step 4 — Login
@@ -327,6 +390,14 @@ if (pm.response.code === 200) {
   console.log("Login gagal:", json.error.message);
 }
 ```
+### Tutorial
+<p align="center">
+  <img width="300" src="https://github.com/user-attachments/assets/6eeef1be-35d0-4fea-94f7-2a8bbad5d449" />
+  <img width="300" src="https://github.com/user-attachments/assets/ab3fcd92-b64a-4d21-b7f3-4570f47e00a9" />
+  <img width="300" src="https://github.com/user-attachments/assets/f21faeeb-55a8-40a0-b06e-4502ce61550a" />
+  <img width="300" src="https://github.com/user-attachments/assets/1d1dc5a0-32e9-4a05-a330-3b28fec46de8" />
+</p>
+
 ---
 
 # 9. Step 5 — Backend Verifikasi Token
