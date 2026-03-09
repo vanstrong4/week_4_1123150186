@@ -5,3 +5,20 @@
 3. Klik Create a new project.
 4. Isi nama project → klik Continue → klik Create Project.
 5. Tunggu sampai proses selesai → klik Continue.
+
+# 2. Membuat Web App di Firebase
+
+1. Di dalam project Firebase, klik Add App.
+2. Pilih Web.
+3. Isi App Nickname.
+4. Klik Register App.
+Setelah selesai, Firebase akan menampilkan konfigurasi aplikasi.
+
+Yang perlu diambil adalah:
+```
+apiKey
+```
+Nilai ini akan digunakan di Postman Environment sebagai:
+```
+FIREBASE_API_KEY
+```
