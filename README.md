@@ -136,9 +136,71 @@ if (pm.response.code === 200) {
 ```
 
 
+# 6. Step 2 — Kirim Email Verifikasi
+Digunakan untuk mengirim email verifikasi ke user.
+
+### ENDPOINT
+```bash
+POST
+https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key={{FIREBASE_API_KEY}}
+```
+
+### HEADERS
+
+| Key | Value | Keterangan |
+|---------|---------|---------|
+| Content-Type  | application/json | Wajib untuk semua Firebase REST API  |
+
+### Request Body (raw JSON)
+```bash
+{
+  "requestType": "VERIFY_EMAIL",
+  "idToken": "{{FIREBASE_ID_TOKEN}}"
+}
+```
+
+### Response
+- Sukses
+```bash
+Response: 200 OK
+{
+  "kind": "identitytoolkit#GetOobConfirmationCodeResponse",
+  "email": "test@example.com" // ← Email tujuan pengiriman
+}
+```
+
+- Error
+```bash
+Response: 400 Bad Request
+{
+  "error": {
+    "code": 400,
+    "message": "INVALID_ID_TOKEN", // ← idToken sudah kadaluarsa
+    "status": "INVALID_ARGUMENT"
+  }
+}
+```
 
 
+| Error Code | Artinya | Solusi |
+|---------|---------|---------|
+| INVALID_ID_TOKEN  | idToken kadaluarsa atau tidak valid | Login ulang di Step 4 untuk mendapat idToken baru, lalu kirim ulang  |
+| USER_NOT_FOUND  | User tidak ditemukan di Firebase | Pastikan register berhasil di Step 1 |
+| TOO_MANY_ATTEMPTS_TRY_LATER  | Firebase membatasi pengiriman email | Tunggu beberapa menit  |
 
+
+### Postman Test Script
+```bash
+// Postman → Tests tab:
+if (pm.response.code === 200) {
+  const json = pm.response.json();
+  console.log("Email verifikasi dikirim ke:", json.email);
+  console.log("Sekarang buka inbox email dan klik link verifikasi.");
+  console.log("Setelah klik, lanjut ke Step 3 untuk cek status.");
+} else {
+  console.log("Gagal kirim email:", pm.response.json().error.message);
+}
+```
 
 
 
