@@ -134,7 +134,7 @@ if (pm.response.code === 200) {
   console.log("Register gagal:", json.error.message);
 }
 ```
-
+---
 
 # 6. Step 2 — Kirim Email Verifikasi
 Digunakan untuk mengirim email verifikasi ke user.
@@ -201,7 +201,7 @@ if (pm.response.code === 200) {
   console.log("Gagal kirim email:", pm.response.json().error.message);
 }
 ```
-
+---
 # 7. Step 3 — Cek Status Verifikasi Email
 Digunakan untuk mengecek apakah email sudah diverifikasi.
 
@@ -256,10 +256,77 @@ Response: 200 OK (email verified)
   ]
 }
 ```
+---
+
+# 8. Step 4 — Login
+Digunakan untuk login menggunakan email dan password.
+
+### ENDPOINT
+```bash
+POST
+https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={{FIREBASE_API_KEY}}
+```
+
+### Request Body (raw JSON)
+```bash
+{
+  "email": "{{USER_EMAIL}}",
+  "password": "{{USER_PASSWORD}}",
+  "returnSecureToken": true
+}
+```
+
+### Response
+- Sukses
+```bash
+Response: 200 OK
+{
+  "kind": "identitytoolkit#VerifyPasswordResponse",
+  "localId": "aBcDeFgHiJkLmN",
+  "email": "test@example.com",
+  "displayName": "Test User",
+  "idToken": "eyJhbGciOiJSUzI1...", // ← Firebase ID Token BARU
+  "registered": true,
+  "refreshToken": "AMf-vBxK...",
+  "expiresIn": "3600"
+}
+```
+
+- Error
+```bash
+Response: 400 Bad Request
+{
+  "error": {
+    "code": 400,
+    "message": "INVALID_PASSWORD",
+    "errors": [{ "message": "INVALID_PASSWORD", "domain": "global" }]
+  }
+}
+```
 
 
+| Error Code | Artinya | Solusi |
+|---------|---------|---------|
+| INVALID_PASSWORD  | Password salah | Cek kembali password  |
+| EMAIL_NOT_FOUND  | Email belum terdaftar | Lakukan register di Step 1 terlebih dahulu  |
+| USER_DISABLED  | Akun di-disable oleh admin | Hubungi admin Firebase Console  |
+| INVALID_EMAIL  | Format email salah | Pastikan format email benar  |
+| TOO_MANY_ATTEMPTS_TRY_LATER  | Login di-block karena terlalu banyak gagal | Tunggu beberapa menit  |
 
-
+### Postman Test Script — Auto-Update Token
+```bash
+// Postman → Tests tab:
+const json = pm.response.json();
+if (pm.response.code === 200) {
+  // Update environment dengan idToken BARU hasil login
+  pm.environment.set("FIREBASE_ID_TOKEN", json.idToken);
+  pm.environment.set("FIREBASE_REFRESH_TOKEN", json.refreshToken);
+  console.log("Login berhasil. Token diperbarui.");
+  console.log("Lanjut ke Step 5: kirim token ke backend.");
+} else {
+  console.log("Login gagal:", json.error.message);
+}
+```
 
 
 
