@@ -327,8 +327,61 @@ if (pm.response.code === 200) {
   console.log("Login gagal:", json.error.message);
 }
 ```
+---
 
+# 9. Step 5 — Backend Verifikasi Token
 
+Setelah login berhasil:
+- Client mengirim Firebase ID Token ke backend.
+
+Contoh:
+```bash
+POST 
+/auth/verify-token
+```
+
+Backend akan:
+
+1. Memverifikasi token ke Firebase.
+2. Mengecek apakah email sudah verified.
+3. Membuat user baru di database (jika belum ada).
+4. Mengembalikan JWT milik backend.
+
+Contoh response:
+```bash
+{
+  "access_token": "eyJhbGciOiJIUzI1NiJ9...",
+  "token_type": "Bearer",
+  "expires_in": 86400
+}
+```
+
+JWT ini berlaku 24 jam.
+
+---
+
+# 10. Step 6 — Request ke Backend
+Setiap request ke backend harus menyertakan token ini.
+
+Contoh:
+
+```
+GET 
+/products
+```
+
+Header:
+```
+Authorization: Bearer BACKEND_TOKEN
+```
+Jika token tidak ada:
+```
+401 Unauthorized
+```
+Jika token expired:
+```
+TOKEN_EXPIRED
+```
 
 
 
