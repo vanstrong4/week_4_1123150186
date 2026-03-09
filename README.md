@@ -6,6 +6,8 @@
 4. Isi nama project → klik Continue → klik Create Project.
 5. Tunggu sampai proses selesai → klik Continue.
 
+---
+
 # 2. Membuat Web App di Firebase
 
 1. Di dalam project Firebase, klik Add App.
@@ -23,6 +25,8 @@ Nilai ini akan digunakan di Postman Environment sebagai:
 FIREBASE_API_KEY
 ```
 
+---
+
 # 3. Mengaktifkan Authentication
 
 1. Masuk ke menu Authentication.
@@ -31,6 +35,8 @@ FIREBASE_API_KEY
 4. Aktifkan Email/Password.
 5. Klik Save.
 Setelah itu Firebase sudah bisa dipakai untuk register dan login user.
+
+---
 
 # 4. Setup Environment di Postman
 
@@ -50,8 +56,84 @@ Setelah itu Firebase sudah bisa dipakai untuk register dan login user.
 
 Environment ini dipakai agar tidak perlu mengetik ulang data di setiap request.
 
+---
+
+# 5. Step 1 — Register User
+Digunakan untuk membuat akun baru di Firebase.
+
+### ENDPOINT
+```bash
+POST
+https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={{FIREBASE_API_KEY}}
+```
+
+### HEADERS
+
+| Key | Value | Keterangan |
+|---------|---------|---------|
+| Content-Type  | application/json | Wajib untuk semua Firebase REST API  |
+
+### Request Body (raw JSON)
+```bash
+{
+  "email": "{{USER_EMAIL}}",
+  "password": "{{USER_PASSWORD}}",
+  "returnSecureToken": true
+}
+```
+
+### Response
+- Sukses
+```bash
+Response: 200 OK
+{
+  "kind": "identitytoolkit#SignupNewUserResponse",
+  "localId": "aBcDeFgHiJkLmN",
+  "email": "test@example.com",
+  "displayName": "",
+  "idToken": "eyJhbGciOiJSUzI1...",
+  "registered": false,
+  "refreshToken": "AMf-vBxK...",
+  "expiresIn": "3600"
+}
+```
+
+- Error
+```bash
+Response: 400 Bad Request
+{
+  "error": {
+    "code": 400,
+    "message": "EMAIL_EXISTS",
+    "status": "INVALID_ARGUMENT"
+  }
+}
+```
 
 
+| Error Code | Artinya | Solusi |
+|---------|---------|---------|
+| EMAIL_EXISTS  | Email sudah terdaftar di Firebase | Gunakan email lain atau cek apakah sudah register  |
+| INVALID_EMAIL  | Format email salah | Pastikan format email benar:user@domain.com  |
+| WEAK_PASSWORD  | Password kurang dari 6 karakter | Gunakan password minimal 6 karakter  |
+| OPERATION_NOT_ALLOWED  | Email/Password auth belum diaktifkan | Aktifkan di Firebase Console → Authentication → Sign-in method  |
+| TOO_MANY_ATTEMPTS_TRY_LATER  | Terlalu banyak percobaan | Tunggu beberapa menit, atau clear IP block di Firebase Console  |
+
+### Postman Test Script — Auto-save Token
+- Copy paste ke tab "Tests" di Postman agar idToken tersimpan otomatis:
+```bash
+// Postman → Tests tab:
+const json = pm.response.json();
+if (pm.response.code === 200) {
+  pm.environment.set("FIREBASE_ID_TOKEN", json.idToken);
+  pm.environment.set("FIREBASE_LOCAL_ID", json.localId);
+  pm.environment.set("FIREBASE_REFRESH_TOKEN", json.refreshToken);
+  console.log("Register sukses. UID:", json.localId);
+  console.log("PERHATIAN: Email belum diverifikasi. Lanjut ke Step 2.");
+} else {
+  console.log("Register gagal:", json.error.message);
+}
+```
 
 
 
